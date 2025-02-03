@@ -92,29 +92,29 @@ def exibir_conscritos():
         x[0]                        # Ordenar alfabeticamente pelo nome
     ), reverse=True)  # Invertido para ter "Excelente" primeiro
 
-    pelotao_1 = [c for c in conscritos_ordenados if c[0][0].upper() in "ABCDE"]
-    pelotao_2 = [c for c in conscritos_ordenados if c[0][0].upper() in "FGHIJ"]
+    pelotao_3 = [c for c in conscritos_ordenados if c[0][0].upper() in "JK"]
+    pelotao_4 = [c for c in conscritos_ordenados if c[0][0].upper() in "LMNO"]
 
     # 🔹 Atualizar colunas para incluir todas as 6 colunas corretamente
     colunas = ["Nome", "Menção", "Habilidades", "Quais Habilidades", "Peso da Menção", "Situação"]
 
-    # 🔹 Exibir a tabela do 1º Pelotão
-    st.subheader("1º Pelotão (A a E)")
-    pelotao_1_df = pd.DataFrame(pelotao_1, columns=colunas)
+    # 🔹 Exibir a tabela do 3º Pelotão
+    st.subheader("3º Pelotão (J a K)")
+    pelotao_3_df = pd.DataFrame(pelotao_3, columns=colunas)
 
     # Adicionar cor para aptos e inaptos
-    pelotao_1_df['Situação'] = pelotao_1_df['Situação'].apply(lambda x: "Inapto" if "Inapto" in x else "Apto")
-    st.table(pelotao_1_df.style.apply(
+    pelotao_3_df['Situação'] = pelotao_3_df['Situação'].apply(lambda x: "Inapto" if "Inapto" in x else "Apto")
+    st.table(pelotao_3_df.style.apply(
         lambda x: ['background-color: lightcoral' if 'Inapto' in v else 'background-color: lightgreen' if 'Apto' in v else '' for v in x], 
         axis=1
     ))
 
-    # 🔹 Exibir a tabela do 2º Pelotão
-    st.subheader("2º Pelotão (F a J)")
-    pelotao_2_df = pd.DataFrame(pelotao_2, columns=colunas)
+    # 🔹 Exibir a tabela do 4º Pelotão
+    st.subheader("4º Pelotão (L a O)")
+    pelotao_4_df = pd.DataFrame(pelotao_4, columns=colunas)
 
     # Adicionar cor para aptos e inaptos
-    pelotao_2_df['Situação'] = pelotao_2_df['Situação'].apply(lambda x: "Inapto" if "Inapto" in x else "Apto")
+    pelotao_4_df['Situação'] = pelotao_4_df['Situação'].apply(lambda x: "Inapto" if "Inapto" in x else "Apto")
     st.table(pelotao_2_df.style.apply(
         lambda x: ['background-color: lightcoral' if 'Inapto' in v else 'background-color: lightgreen' if 'Apto' in v else '' for v in x], 
         axis=1
@@ -133,9 +133,9 @@ def gerar_relatorio_pelotao(pelotao):
     ), reverse=True)  # Invertido para ter "Excelente" primeiro
 
     if pelotao == 1:
-        conscritos_filtrados = [c for c in conscritos_ordenados if c[0][0].upper() in "ABCDE"]
+        conscritos_filtrados = [c for c in conscritos_ordenados if c[0][0].upper() in "JK"]
     else:
-        conscritos_filtrados = [c for c in conscritos_ordenados if c[0][0].upper() in "FGHIJ"]
+        conscritos_filtrados = [c for c in conscritos_ordenados if c[0][0].upper() in "LMNO"]
 
     df = pd.DataFrame(conscritos_filtrados, columns=colunas)
 
@@ -165,7 +165,7 @@ st.image('IMG_1118.png', width=60, use_container_width=True)
 
 # Títulos com espaçamento ajustado
 st.markdown('<h1 style="text-align: center; font-size: 40px; margin-bottom: 5px;">SELEÇÃO COMPLEMENTAR 2025</h1>', unsafe_allow_html=True)
-st.markdown('<h2 style="text-align: center; margin-top: 0px; margin-bottom: 30px;">2ª CIA - TIGRE</h2>', unsafe_allow_html=True)
+st.markdown('<h2 style="text-align: center; margin-top: 0px; margin-bottom: 30px;">3ª CIA - PANTERA</h2>', unsafe_allow_html=True)
 
 # Seção de cadastro
 coletar_dados()
@@ -175,8 +175,8 @@ exibir_conscritos()
 
 # Botão para gerar relatório
 st.subheader("Gerar Relatório")
-st.download_button(label="Baixar Relatório (1º Pelotão)", data=gerar_relatorio_pelotao(1), file_name="relatorio_1pelotao.csv", mime="text/csv")
-st.download_button(label="Baixar Relatório (2º Pelotão)", data=gerar_relatorio_pelotao(2), file_name="relatorio_2pelotao.csv", mime="text/csv")
+st.download_button(label="Baixar Relatório (3º Pelotão)", data=gerar_relatorio_pelotao(1), file_name="relatorio_3pelotao.csv", mime="text/csv")
+st.download_button(label="Baixar Relatório (4º Pelotão)", data=gerar_relatorio_pelotao(2), file_name="relatorio_4pelotao.csv", mime="text/csv")
 
 # Créditos abaixo de "Gerar Relatório", centralizado
 st.markdown("""
