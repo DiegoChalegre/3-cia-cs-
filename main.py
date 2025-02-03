@@ -2,6 +2,13 @@ import streamlit as st
 import pandas as pd
 import gspread
 import json
+
+# Verifica se a variável não é None
+if sua_variavel is not None:
+    dados= json.loads(sua_variavel)
+else:
+    print("a variavel está como None and nãopode ser parseada.") 
+
 import os
 from oauth2client.service_account import ServiceAccountCredentials
 
